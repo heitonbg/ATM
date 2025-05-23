@@ -79,6 +79,16 @@ namespace ATM
       _accounts[fromAccount] -= amount;
       _accounts[toAccount] += amount;
     }
+
+    public decimal CheckBalance(string accountNumber)
+    {
+      if (!_accounts.ContainsKey(accountNumber))
+      {
+        throw new Exception("Счет не найден.");
+      }
+
+      return _accounts[accountNumber];
+    }
   }
 }
     
