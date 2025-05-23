@@ -12,9 +12,12 @@ namespace ATM
 {
     public partial class Form1 : Form
     {
+        private readonly ATM _atm;
+
         public Form1()
         {
             InitializeComponent();
+            _atm = ATM.Instance;
         }
     }
 }
