@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM
 {
-    internal class ATM
+    public sealed class ATM
     {
+        private static readonly Lazy<ATM> _instance = new Lazy<ATM>(() => new ATM());
+        public static ATM Instance => _instance.Value;
+
+        private Dictionary<string, decimal> _accounts;
+
+        private ATM()
+        {
+            _accounts = new Dictionary<string, decimal>();
+        }
     }
 }
