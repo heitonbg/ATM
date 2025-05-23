@@ -30,12 +30,33 @@ namespace ATM
       if (!_accounts.ContainsKey(accountNumber))
       {
         throw new Exception("Счет не найден.");
-      }
+      } 
+
       if (amount <= 0)
       {
         throw new Exception("Сумма для внесения должна быть положительной.");
       }
       _accounts[accountNumber] += amount;
+    }
+
+    public void Withdraw(string accountNumber, decimal amount)
+    {
+      if (!_accounts.ContainsKey(accountNumber))
+      {
+        throw new Exception("Счет не найден.");
+      }
+    
+      if (amount <= 0)
+      {
+        throw new Exception("Сумма для снятия должна быть положительной.");
+      }
+
+      if (_accounts[accountNumber] < amount)
+      {
+        throw new Exception("Недостаточно средств на счете.");
+      }
+    
+      _accounts[accountNumber] -= amount;
     }
   }
 }
