@@ -88,11 +88,14 @@ namespace ATM
       {
         string account = cmbAccounts.SelectedItem?.ToString();
         if (string.IsNullOrEmpty(account))
+        {
           throw new Exception("Выберите счет");
+        }
 
         if (!decimal.TryParse(txtAmount.Text, out decimal amount) || amount <= 0)
+        {
           throw new Exception("Введите корректную сумму");
-
+        }
         _atm.Withdraw(account, amount);
         MessageBox.Show($"Снято {amount:C}. Новый баланс: {_atm.CheckBalance(account):C}", "Успех");
         txtAmount.Clear();
