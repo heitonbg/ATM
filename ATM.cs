@@ -58,6 +58,27 @@ namespace ATM
     
       _accounts[accountNumber] -= amount;
     }
+
+    public void Transfer(string fromAccount, string toAccount, decimal amount)
+    {
+      if (!_accounts.ContainsKey(fromAccount) || !_accounts.ContainsKey(toAccount))
+      {
+        throw new Exception("Один из счетов не найден.");
+      }
+
+      if (amount <= 0)
+      {
+        throw new Exception("Сумма перевода должна быть положительной.");
+      }
+
+      if (_accounts[fromAccount] < amount)
+      {
+        throw new Exception("Недостаточно средств для перевода.");
+      }
+    
+      _accounts[fromAccount] -= amount;
+      _accounts[toAccount] += amount;
+    }
   }
 }
     
