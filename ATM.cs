@@ -24,6 +24,19 @@ namespace ATM
 
       _accounts[accountNumber] = initialBalance;
     }
+
+    public void Deposit(string accountNumber, decimal amount)
+    {
+      if (!_accounts.ContainsKey(accountNumber))
+      {
+        throw new Exception("Счет не найден.");
+      }
+      if (amount <= 0)
+      {
+        throw new Exception("Сумма для внесения должна быть положительной.");
+      }
+      _accounts[accountNumber] += amount;
+    }
   }
 }
     
